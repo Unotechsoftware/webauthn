@@ -90,7 +90,7 @@ func (c *CollectedClientData) Verify(storedChallenge string, ceremony CeremonyTy
 		return ErrParsingData.WithDetails("Error decoding clientData origin as URL")
 	}
 
-	if !strings.EqualFold(FullyQualifiedOrigin(clientDataOrigin), relyingPartyOrigin) {
+	if !strings.EqualFold(clientDataOrigin.Hostname(), relyingPartyOrigin) {
 
 		err := ErrVerification.WithDetails(fmt.Sprintf("Error validating origin with ---non qualified origin : Hostname -- __%v___ Host __%v___ --- expected value : %s and received value : %s", clientDataOrigin.Hostname(), clientDataOrigin.Host, relyingPartyOrigin, FullyQualifiedOrigin(clientDataOrigin)))
 		return err.WithInfo(fmt.Sprintf("Expected Value: %s\n Received: %s\n", relyingPartyOrigin, FullyQualifiedOrigin(clientDataOrigin)))

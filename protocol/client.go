@@ -91,7 +91,7 @@ func (c *CollectedClientData) Verify(storedChallenge string, ceremony CeremonyTy
 	}
 
 	if !strings.EqualFold(FullyQualifiedOrigin(clientDataOrigin), relyingPartyOrigin) {
-		err := ErrVerification.WithDetails(fmt.Sprintf("Error validating origin with expected value : %s and received value : %s", relyingPartyOrigin, FullyQualifiedOrigin(clientDataOrigin)))
+		err := ErrVerification.WithDetails(fmt.Sprintf("Error validating origin with ---non qualified origin : %v --- expected value : %s and received value : %s", clientDataOrigin, relyingPartyOrigin, FullyQualifiedOrigin(clientDataOrigin)))
 		return err.WithInfo(fmt.Sprintf("Expected Value: %s\n Received: %s\n", relyingPartyOrigin, FullyQualifiedOrigin(clientDataOrigin)))
 	}
 
